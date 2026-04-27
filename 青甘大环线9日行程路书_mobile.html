@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>青甘大环线9日自驾游路书 | 2025年7月18日-26日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding-bottom: 70px;
+        }
+
+        /* ========== Header ========== */
+        .m-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(15, 25, 50, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 16px 0;
+        }
+        .m-header-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #f39c12;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-bottom: 8px;
+        }
+        .m-date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-bottom: 8px;
+        }
+
+        /* ========== Tab Bar ========== */
+        .m-tabbar {
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 2px;
+            padding: 0 4px;
+            background: rgba(10, 20, 40, 0.9);
+        }
+        .m-tabbar::-webkit-scrollbar { display: none; }
+        .m-tab {
+            flex-shrink: 0;
+            padding: 8px 12px;
+            font-size: 0.8em;
+            color: #888;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .m-tab.active {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* ========== Main Content ========== */
+        .m-content {
+            padding: 100px 12px 20px;
+            max-width: 100%;
+        }
+        .m-section { display: none; }
+        .m-section.active { display: block; }
+
+        /* ========== Card ========== */
+        .m-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========== Overview ========== */
+        .ov-title {
+            font-size: 1.1em;
+            color: #f39c12;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ov-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .ov-stat {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .ov-stat .val { font-size: 1.3em; font-weight: bold; color: #f39c12; }
+        .ov-stat .lbl { font-size: 0.7em; color: #888; margin-top: 2px; }
+
+        /* Fee table in overview */
+        .ov-fee { margin-top: 12px; }
+        .ov-fee-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8em;
+        }
+        .ov-fee-row:last-child { border-bottom: none; }
+        .ov-fee-row .lbl { color: #ccc; }
+        .ov-fee-row .amount { color: #e74c3c; font-weight: bold; }
+        .ov-fee-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 10px;
+            background: rgba(243,156,18,0.15);
+            border-radius: 8px;
+            margin-top: 6px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        /* Weather */
+        .ov-weather { margin-top: 12px; }
+        .ov-weather-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8em;
+        }
+        .ov-temp { background: rgba(243,156,18,0.2); padding: 2px 8px; border-radius: 8px; color: #f39c12; font-size: 0.75em; }
+
+        /* Checklist */
+        .ov-check {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+            font-size: 0.78em;
+        }
+        .ov-check li { padding: 4px 0; display: flex; align-items: center; gap: 5px; }
+        .ov-check .checkbox {
+            width: 14px; height: 14px;
+            border: 2px solid #f39c12;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Booking */
+        .ov-booking { margin-top: 10px; }
+        .ov-book-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8em;
+        }
+        .ov-book-badge { padding: 2px 6px; border-radius: 8px; font-size: 0.7em; font-weight: bold; background: #e74c3c; color: #fff; }
+        .ov-book-badge.done { background: #27ae60; }
+
+        /* Altitude */
+        .ov-alt { margin-top: 10px; }
+        .ov-alt-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.78em; }
+        .alt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .alt-high { background: #e74c3c; }
+        .alt-mid { background: #f39c12; }
+        .alt-low { background: #27ae60; }
+
+        /* Tips overview */
+        .ov-tip-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8em;
+        }
+        .ov-tip-item:last-child { border-bottom: none; }
+        .ov-tip-icon { font-size: 1.1em; flex-shrink: 0; }
+        .ov-tip-txt strong { color: #fff; display: block; margin-bottom: 2px; }
+        .ov-tip-txt p { color: #888; line-height: 1.5; }
+
+        /* ========== Overview Tables (mobile) ========== */
+        .ov-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 10px;
+        }
+        .ov-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 0.75em;
+        }
+        .ov-table th {
+            background: rgba(243,156,18,0.2);
+            color: #f39c12;
+            padding: 6px 8px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .ov-table td {
+            padding: 6px 8px;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            vertical-align: top;
+            line-height: 1.4;
+        }
+        .ov-table tr:last-child td { border-bottom: none; }
+        .ov-table .price { color: #e74c3c; font-weight: bold; white-space: nowrap; }
+        .ov-table .free { color: #27ae60; font-weight: bold; }
+        .ov-table .subtotal {
+            background: rgba(243,156,18,0.15);
+            font-weight: bold;
+            color: #f39c12;
+        }
+        .ov-table .subtotal td { border-bottom: none; }
+        .ov-table a { color: #3498db; text-decoration: none; font-size: 0.9em; }
+        .ov-table a:hover { text-decoration: underline; }
+
+        /* 住宿列表卡片（手机版） */
+        .ov-hotel-list { margin-top: 10px; }
+        .ov-hotel-row {
+            display: flex;
+            gap: 8px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.78em;
+            align-items: flex-start;
+        }
+        .ov-hotel-row:last-child { border-bottom: none; }
+        .ov-hotel-date { color: #3498db; min-width: 46px; white-space: nowrap; padding-top: 1px; }
+        .ov-hotel-name { color: #ddd; flex: 1; line-height: 1.4; }
+        .ov-hotel-price { color: #e74c3c; font-weight: bold; min-width: 54px; text-align: right; white-space: nowrap; }
+        .ov-hotel-sub { background: rgba(243,156,18,0.15); padding: 6px 0; font-size: 0.78em; color: #f39c12; font-weight: bold; display: flex; justify-content: space-between; margin-top: 4px; }
+
+        /* ========== Day Section ========== */
+        .m-day-title {
+            font-size: 1em;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .m-day-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .m-badge { padding: 3px 10px; border-radius: 12px; font-size: 0.75em; }
+        .badge-distance { background: rgba(52,152,219,0.2); color: #3498db; }
+        .badge-time { background: rgba(243,156,18,0.2); color: #f39c12; }
+        .badge-altitude { background: rgba(155,89,182,0.2); color: #9b59b6; }
+
+        /* ========== Image Carousel ========== */
+        .m-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 12px 0;
+            background: rgba(0,0,0,0.3);
+        }
+        .m-carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+        .m-carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .m-carousel-slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .m-carousel-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            font-size: 0.75em;
+            color: #fff;
+        }
+        .m-carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px 0 4px;
+        }
+        .m-carousel-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .m-carousel-dot.active { background: #f39c12; }
+        .m-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px; height: 36px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .m-carousel-arrow.prev { left: 8px; }
+        .m-carousel-arrow.next { right: 8px; }
+
+        /* ========== Spot Table (card style on mobile) ========== */
+        .m-spot-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 3px solid #3498db;
+        }
+        .m-spot-card:last-child { margin-bottom: 0; }
+        .m-spot-name { font-weight: bold; color: #fff; font-size: 0.95em; margin-bottom: 4px; }
+        .spot-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65em;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .tag-scenery { background: #27ae60; }
+        .tag-food { background: #e74c3c; }
+        .tag-culture { background: #3498db; }
+        .tag-nature { background: #9b59b6; }
+        .m-spot-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            margin-top: 6px;
+            font-size: 0.78em;
+            color: #aaa;
+        }
+        .m-spot-meta span { white-space: nowrap; }
+        .m-spot-suggest { margin-top: 6px; font-size: 0.78em; color: #888; line-height: 1.5; }
+
+        /* Hotel card */
+        .m-hotel-card {
+            background: rgba(39,174,96,0.1);
+            border: 1px solid rgba(39,174,96,0.3);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .m-hotel-name { font-weight: bold; color: #27ae60; font-size: 0.9em; margin-bottom: 6px; }
+        .m-hotel-row { display: flex; gap: 6px; padding: 3px 0; font-size: 0.78em; }
+        .m-hotel-lbl { color: #888; min-width: 56px; }
+        .m-hotel-val { color: #ddd; }
+        .hotel-price { color: #e74c3c; font-weight: bold; }
+
+        /* ========== Route ========== */
+        .m-route {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+        }
+        .m-route-title { color: #f39c12; font-size: 0.85em; margin-bottom: 10px; font-weight: bold; }
+        .m-route-nodes { display: flex; flex-direction: column; gap: 6px; }
+        .m-route-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82em;
+        }
+        .m-route-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .m-route-dot.start { background: #27ae60; }
+        .m-route-dot.stop { background: #3498db; }
+        .m-route-dot.end { background: #e74c3c; }
+        .m-route-name { color: #fff; flex: 1; }
+        .m-route-km { color: #3498db; font-size: 0.75em; }
+        .m-route-arrow { color: #f39c12; font-size: 0.9em; padding-left: 19px; }
+        .m-map-links { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+        .m-map-btn {
+            display: block;
+            padding: 8px 14px;
+            background: linear-gradient(135deg, #1b7dff 0%, #0066cc 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.8em;
+            text-align: center;
+        }
+
+        /* ========== Spot Detail Accordion ========== */
+        .m-accordion { margin-top: 12px; }
+        .m-accordion-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            border-left: 3px solid #f39c12;
+        }
+        .m-accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-size: 0.88em;
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .m-accordion-header .arrow {
+            font-size: 0.75em;
+            transition: transform 0.2s;
+        }
+        .m-accordion-item.open .arrow { transform: rotate(180deg); }
+        .m-accordion-body { display: none; padding: 0 14px 14px; }
+        .m-accordion-item.open .m-accordion-body { display: block; }
+        .m-accordion-intro {
+            font-size: 0.82em;
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .m-accordion-intro em { color: #f39c12; font-style: normal; }
+        .m-hl-item {
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.78em;
+        }
+        .m-hl-item:last-child { margin-bottom: 0; }
+        .m-hl-icon { margin-right: 4px; }
+        .m-hl-item strong { color: #fff; }
+        .m-hl-item p { color: #999; margin-top: 3px; line-height: 1.6; }
+
+        /* ========== Tips Section ========== */
+        .m-tips { margin-top: 16px; }
+        .m-tips-title { color: #f39c12; font-size: 1em; margin-bottom: 12px; font-weight: bold; }
+        .m-tip-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .m-tip-icon { font-size: 1.2em; flex-shrink: 0; margin-top: 2px; }
+        .m-tip-content h4 { color: #fff; font-size: 0.88em; margin-bottom: 3px; }
+        .m-tip-content p { color: #888; font-size: 0.78em; line-height: 1.5; }
+
+        /* ========== Section Divider ========== */
+        .m-divider {
+            text-align: center;
+            color: #555;
+            font-size: 0.7em;
+            padding: 16px 0 4px;
+            letter-spacing: 2px;
+        }
+
+        /* ========== Scrollbar ========== */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+        /* ========== Animations ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .m-section.active .m-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ Header + Tab Bar ============ -->
+<div class="m-header">
+    <div class="m-header-title">🚗 青甘大环线9日自驾游路书</div>
+    <div class="m-date-badge">📅 7月18日-26日（共9天9晚）</div>
+    <div class="m-tabbar" id="tabBar">
+        <div class="m-tab active" data-tab="overview">概览</div>
+        <div class="m-tab" data-tab="day1">D1</div>
+        <div class="m-tab" data-tab="day2">D2</div>
+        <div class="m-tab" data-tab="day3">D3</div>
+        <div class="m-tab" data-tab="day4">D4</div>
+        <div class="m-tab" data-tab="day5">D5</div>
+        <div class="m-tab" data-tab="day6">D6</div>
+        <div class="m-tab" data-tab="day7">D7</div>
+        <div class="m-tab" data-tab="day8">D8</div>
+        <div class="m-tab" data-tab="day9">D9</div>
+    </div>
+</div>
+
+<!-- ============ Main Content ============ -->
+<div class="m-content">
+
+    <!-- ==================== 概览 ==================== -->
+    <div class="m-section active" id="overview">
+
+        <!-- 行程概览 -->
+        <div class="m-card">
+            <div class="ov-title">📊 行程概览</div>
+            <div class="ov-grid">
+                <div class="ov-stat"><div class="val">9天</div><div class="lbl">行程天数</div></div>
+                <div class="ov-stat"><div class="val">3200+</div><div class="lbl">总里程(km)</div></div>
+                <div class="ov-stat"><div class="val">20+</div><div class="lbl">精华景点</div></div>
+                <div class="ov-stat"><div class="val">9人</div><div class="lbl">同行伙伴</div></div>
+            </div>
+        </div>
+
+        <!-- 人均费用 -->
+        <div class="m-card">
+            <div class="ov-title">💰 人均费用</div>
+            <div class="ov-fee">
+                <div class="ov-fee-row"><span class="lbl">🚄 大交通</span><span class="amount">¥1,185</span></div>
+                <div class="ov-fee-row"><span class="lbl">🚗 小交通</span><span class="amount">¥2,086</span></div>
+                <div class="ov-fee-row"><span class="lbl">🏨 住宿</span><span class="amount">¥1,212</span></div>
+                <div class="ov-fee-row"><span class="lbl">🎫 门票</span><span class="amount">¥1,144</span></div>
+                <div class="ov-fee-row"><span class="lbl">🍜 餐饮</span><span class="amount">¥900</span></div>
+                <div class="ov-fee-total"><span>💵 人均总费用</span><span>¥6,527</span></div>
+            </div>
+        </div>
+
+        <!-- 天气 -->
+        <div class="m-card">
+            <div class="ov-title">🌤️ 7月天气穿搭</div>
+            <div class="ov-weather">
+                <div class="ov-weather-item"><span>西宁、德令哈</span><span class="ov-temp">15-28°C</span></div>
+                <div class="ov-weather-item"><span>茶卡、大柴旦</span><span class="ov-temp">10-25°C</span></div>
+                <div class="ov-weather-item"><span>敦煌、嘉峪关</span><span class="ov-temp">22-35°C</span></div>
+                <div class="ov-weather-item"><span>张掖、祁连</span><span class="ov-temp">15-28°C</span></div>
+            </div>
+            <div style="margin-top:10px;font-size:0.78em;color:#888;">👕 白天夏装+防晒，早晚加外套</div>
+        </div>
+
+        <!-- 高原 -->
+        <div class="m-card">
+            <div class="ov-title">🏔️ 高原反应提示</div>
+            <div class="ov-alt">
+                <div class="ov-alt-item"><span class="alt-dot alt-high"></span><span>东格尔观景台</span><strong style="color:#e74c3c;">~3600m</strong></div>
+                <div class="ov-alt-item"><span class="alt-dot alt-high"></span><span>南八仙魔鬼城</span><strong style="color:#e74c3c;">3260m</strong></div>
+                <div class="ov-alt-item"><span class="alt-dot alt-mid"></span><span>茶卡/翡翠湖</span><strong style="color:#f39c12;">3000-3150m</strong></div>
+                <div class="ov-alt-item"><span class="alt-dot alt-mid"></span><span>察尔汗/水上雅丹</span><strong style="color:#f39c12;">2670-2700m</strong></div>
+                <div class="ov-alt-item"><span class="alt-dot alt-low"></span><span>敦煌/嘉峪关</span><strong style="color:#27ae60;">1300-1700m</strong></div>
+            </div>
+            <div style="margin-top:10px;font-size:0.78em;color:#888;">💊 建议提前服用红景天，避免剧烈运动，多喝水</div>
+        </div>
+
+        <!-- 必备 -->
+        <div class="m-card">
+            <div class="ov-title">🎒 必备物品清单</div>
+            <ul class="ov-check">
+                <li><span class="checkbox"></span>身份证/驾照</li>
+                <li><span class="checkbox"></span>防晒霜SPF50+</li>
+                <li><span class="checkbox"></span>墨镜/遮阳帽</li>
+                <li><span class="checkbox"></span>红景天/高原安</li>
+                <li><span class="checkbox"></span>薄外套/防晒衣</li>
+                <li><span class="checkbox"></span>运动鞋/登山鞋</li>
+                <li><span class="checkbox"></span>充电宝/数据线</li>
+                <li><span class="checkbox"></span>无人机(航拍用)</li>
+                <li><span class="checkbox"></span>亮色衣裙(盐湖)</li>
+                <li><span class="checkbox"></span>常用药品</li>
+            </ul>
+        </div>
+
+        <!-- 预约 -->
+        <div class="m-card">
+            <div class="ov-title">📅 预约提醒</div>
+            <div class="ov-booking">
+                <div class="ov-book-item"><span class="ov-book-badge">紧急</span><span>莫高窟A票 - 提前1个月</span></div>
+                <div class="ov-book-item"><span class="ov-book-badge">重要</span><span>租车 - 提前2周</span></div>
+                <div class="ov-book-item"><span class="ov-book-badge">重要</span><span>榆林窟特窟预约</span></div>
+                <div class="ov-book-item"><span class="ov-book-badge done">建议</span><span>酒店预订(旺季)</span></div>
+            </div>
+            <div style="margin-top:10px;font-size:0.78em;color:#e74c3c;">⚠️ 莫高窟门票非常紧张，务必尽早预约！</div>
+        </div>
+
+        <!-- 住宿总览 -->
+        <div class="m-card">
+            <div class="ov-title">🏨 住宿总览</div>
+            <div class="ov-hotel-list">
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/18</span>
+                    <span class="ov-hotel-name">海友西宁火车站酒店</span>
+                    <span class="ov-hotel-price">¥969</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/19</span>
+                    <span class="ov-hotel-name">星程德令哈市政府中心广场酒店</span>
+                    <span class="ov-hotel-price">¥1,609</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/20</span>
+                    <span class="ov-hotel-name">汉庭酒店·大柴旦店</span>
+                    <span class="ov-hotel-price">¥1,794</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/21</span>
+                    <span class="ov-hotel-name">汉庭酒店·大柴旦店</span>
+                    <span class="ov-hotel-price">¥1,794</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/22</span>
+                    <span class="ov-hotel-name">汉庭敦煌沙洲夜市酒店</span>
+                    <span class="ov-hotel-price">¥1,530</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/23</span>
+                    <span class="ov-hotel-name">汉庭敦煌沙洲夜市酒店</span>
+                    <span class="ov-hotel-price">¥1,530</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/24</span>
+                    <span class="ov-hotel-name">张掖花园洋房</span>
+                    <span class="ov-hotel-price">¥807</span>
+                </div>
+                <div class="ov-hotel-row">
+                    <span class="ov-hotel-date">7/25</span>
+                    <span class="ov-hotel-name">海友西宁火车站酒店</span>
+                    <span class="ov-hotel-price">¥870</span>
+                </div>
+                <div class="ov-hotel-sub">
+                    <span>住宿费用小计（8晚）</span>
+                    <span>¥10,903 / ¥1,212人</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 景点门票总览 -->
+        <div class="m-card">
+            <div class="ov-title">🎫 景点门票总览</div>
+            <div class="ov-table-wrap">
+                <table class="ov-table">
+                    <thead>
+                        <tr><th>日期</th><th>景点</th><th>平台</th><th>备注</th><th>人均</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>7/18</td>
+                            <td>塔尔寺</td>
+                            <td><a href="https://www.qhlxs.com/jingdianmenpiao/251.html" target="_blank">携程/美团</a></td>
+                            <td>旺季提前网上预约</td>
+                            <td class="price">¥70</td>
+                        </tr>
+                        <tr>
+                            <td>7/19</td>
+                            <td>东格尔观景台</td>
+                            <td>—</td>
+                            <td>免费，注意防晒</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/19</td>
+                            <td>茶卡盐湖</td>
+                            <td><a href="https://piao.qunar.com/ticket/detail_4932.html" target="_blank">去哪儿/携程</a></td>
+                            <td>最佳时段上午9-11点/下午4-7点</td>
+                            <td class="price">¥110</td>
+                        </tr>
+                        <tr>
+                            <td>7/20</td>
+                            <td>察尔汗盐湖</td>
+                            <td><a href="https://piao.qunar.com/ticket/detail_4932.html" target="_blank">去哪儿/携程</a></td>
+                            <td>含门票+观光车，航拍自由</td>
+                            <td class="price">¥100</td>
+                        </tr>
+                        <tr>
+                            <td>7/20</td>
+                            <td>南八仙魔鬼城</td>
+                            <td>—</td>
+                            <td>免费，SUV更佳</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/21</td>
+                            <td>大柴旦翡翠湖</td>
+                            <td><a href="https://you.ctrip.com/sight/haixiprefecture120012/4331367.html" target="_blank">携程/去哪儿</a></td>
+                            <td>淡季25元，航拍自由</td>
+                            <td class="price">¥50</td>
+                        </tr>
+                        <tr>
+                            <td>7/21</td>
+                            <td>U型网红公路</td>
+                            <td>—</td>
+                            <td>G315打卡，注意安全</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/21</td>
+                            <td>乌素特水上雅丹</td>
+                            <td><a href="https://www.wusuteyadan.com/" target="_blank">官网/携程</a></td>
+                            <td>门票60元+观光车60元（必购）</td>
+                            <td class="price">¥120</td>
+                        </tr>
+                        <tr>
+                            <td>7/21</td>
+                            <td>黑独山</td>
+                            <td>—</td>
+                            <td>免费，请勿碾压草场</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/22</td>
+                            <td>石油小镇(冷湖)</td>
+                            <td>—</td>
+                            <td>免费，建议上午或下午4点后</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/22</td>
+                            <td>鸣沙山·月牙泉</td>
+                            <td><a href="https://you.ctrip.com/sight/dunhuang1076/17863.html" target="_blank">携程/公众号</a></td>
+                            <td>推荐188元套票，三天多次入园</td>
+                            <td class="price">¥110</td>
+                        </tr>
+                        <tr>
+                            <td>7/23</td>
+                            <td>莫高窟</td>
+                            <td><a href="https://www.mgk.org.cn/ticket" target="_blank">官网·唯一</a></td>
+                            <td>⚠️提前1个月预约！A票含8洞窟+电影</td>
+                            <td class="price">¥238</td>
+                        </tr>
+                        <tr>
+                            <td>7/23</td>
+                            <td>大地之子</td>
+                            <td>—</td>
+                            <td>免费，禁止攀爬</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/23</td>
+                            <td>榆林窟</td>
+                            <td><a href="https://gs.ctrip.com/html5/you/sight/guazhou2807/4956.html" target="_blank">携程/公众号</a></td>
+                            <td>普窟40元，特窟150-200元强烈推荐</td>
+                            <td class="price">¥40</td>
+                        </tr>
+                        <tr>
+                            <td>7/23</td>
+                            <td>玄奘取经博物馆</td>
+                            <td>—</td>
+                            <td>免费，周一可能闭馆</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/23</td>
+                            <td>沙洲夜市</td>
+                            <td>—</td>
+                            <td>免费逛，必吃驴肉黄面、杏皮茶</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/24</td>
+                            <td>嘉峪关</td>
+                            <td><a href="https://you.ctrip.com/sight/jiayuguan284/11108.html" target="_blank">携程/公众号</a></td>
+                            <td>联票含关城+悬臂长城+第一墩</td>
+                            <td class="price">¥110</td>
+                        </tr>
+                        <tr>
+                            <td>7/24</td>
+                            <td>张掖七彩丹霞</td>
+                            <td><a href="https://you.ctrip.com/sight/zhangye243/13266.html" target="_blank">携程/公众号</a></td>
+                            <td>含观光车，下午3点后入园拍日落</td>
+                            <td class="price">¥75</td>
+                        </tr>
+                        <tr>
+                            <td>7/25</td>
+                            <td>马蹄寺</td>
+                            <td><a href="https://you.ctrip.com/sight/zhangye243/18491.html" target="_blank">携程/去哪儿</a></td>
+                            <td>含门票+北寺石窟，周边无餐饮</td>
+                            <td class="price">¥71</td>
+                        </tr>
+                        <tr>
+                            <td>7/25</td>
+                            <td>祁连大草原</td>
+                            <td>—</td>
+                            <td>免费，骑马自费50-100元/小时</td>
+                            <td class="free">免费</td>
+                        </tr>
+                        <tr>
+                            <td>7/25</td>
+                            <td>门源油菜花海</td>
+                            <td><a href="https://you.ctrip.com/sight/qinghai100104/10432.html" target="_blank">携程/去哪儿</a></td>
+                            <td>红山观景台50元，7月盛花期最美</td>
+                            <td class="price">¥50</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td colspan="4">景点门票费用小计（已含免费景点）</td>
+                            <td class="price">¥1,144/人</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 实用贴士 -->
+        <div class="m-tips">
+            <div class="m-tips-title">⚠️ 实用贴士</div>
+            <div class="m-tip-card">
+                <span class="m-tip-icon">🏔️</span>
+                <div class="m-tip-content"><h4>高原反应</h4><p>察尔汗(2670m)、南八仙(3260m)、东格尔(3600m)海拔高，避免剧烈运动</p></div>
+            </div>
+            <div class="m-tip-card">
+                <span class="m-tip-icon">👕</span>
+                <div class="m-tip-content"><h4>衣物准备</h4><p>7月白天25-30°C，早晚10-15°C，需带外套；防晒霜、墨镜必备</p></div>
+            </div>
+            <div class="m-tip-card">
+                <span class="m-tip-icon">🎫</span>
+                <div class="m-tip-content"><h4>提前预约</h4><p>莫高窟A票需提前1个月预约！榆林窟特窟值得看</p></div>
+            </div>
+            <div class="m-tip-card">
+                <span class="m-tip-icon">🚁</span>
+                <div class="m-tip-content"><h4>无人机提示</h4><p><b>禁飞：</b>莫高窟、嘉峪关<br><b>限高：</b>鸣沙山120m、七彩丹霞30m<br><b>自由飞：</b>青海湖、茶卡、翡翠湖、水上雅丹、察尔汗</p></div>
+            </div>
+            <div class="m-tip-card">
+                <span class="m-tip-icon">🏛️</span>
+                <div class="m-tip-content"><h4>民俗风情</h4><p>清真寺需脱帽禁短裙；寺庙顺时针行走；勿随意进入草场；沿途多清真餐厅</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 1 ==================== -->
+    <div class="m-section" id="day1">
+        <div class="m-card">
+            <div class="m-day-title">Day 1（7月17日）🚄 | 北京 → 西宁（火车卧铺T175），塔尔寺游览</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">T175软卧约21小时</span>
+                <span class="m-badge badge-time">7月18日上午抵达</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d1">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://images.pexels.com/photos/9868483/pexels-photo-9868483.jpeg?auto=compress&cs=tinysrgb&w=800" alt="西宁夜景"><div class="m-carousel-caption">西宁夜景</div></div>
+                    <div class="m-carousel-slide"><img src="https://img1.baidu.com/it/u=3396576190,1765605997&fm=253&app=138&f=JPEG?w=1200&h=800" alt="塔尔寺"><div class="m-carousel-caption">塔尔寺</div></div>
+                    <div class="m-carousel-slide"><img src="https://images.pexels.com/photos/33085856/pexels-photo-33085856.jpeg?auto=compress&cs=tinysrgb&w=800" alt="西宁街景"><div class="m-carousel-caption">西宁街景</div></div>
+                    <div class="m-carousel-slide"><img src="https://images.pexels.com/photos/9805555/pexels-photo-9805555.jpeg?auto=compress&cs=tinysrgb&w=800" alt="天路一号"><div class="m-carousel-caption">天路一号</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d1',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d1',1)">›</button>
+                <div class="m-carousel-dots" id="d1-dots"></div>
+            </div>
+
+            <div class="m-spot-card"><div class="m-spot-name">🚄 北京西站</div><div class="m-spot-meta"><span>7月17日 13:05</span><span>乘坐T175软卧上铺（556元/人）</span></div></div>
+            <div class="m-spot-card"><div class="m-spot-name">🚄 西宁站 <span class="spot-tag tag-scenery">海拔2260m</span></div><div class="m-spot-meta"><span>7月18日 10:27</span><span>取租车，前往酒店放行李</span></div></div>
+            <div class="m-spot-card"><div class="m-spot-name">🏨 西宁市区酒店</div><div class="m-spot-meta"><span>下午</span><span>适应高原，早休息</span></div></div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 海友西宁火车站酒店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">火车站西侧综合安置区2号地块B1号楼11层</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">323元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">总价</span><span class="m-hotel-val hotel-price">969元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月17日 23:00前</span></div>
+            </div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">北京西站</span></div>
+                    <div class="m-route-arrow">🚄</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">西宁站</span><span class="m-route-km">T175卧铺</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">西宁酒店(宿)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 2 ==================== -->
+    <div class="m-section" id="day2">
+        <div class="m-card">
+            <div class="m-day-title">Day 2（7月19日）🌄 | 西宁 → 青海湖（东格尔）→ 茶卡盐湖 → 德令哈</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约500公里·约7小时</span>
+                <span class="m-badge badge-time">7:00出发</span>
+                <span class="m-badge badge-altitude">东格尔3600m</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d2">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://images.pexels.com/photos/34630868/pexels-photo-34630868.jpeg?auto=compress&cs=tinysrgb&w=800" alt="青海湖"><div class="m-carousel-caption">青海湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKLv9.md.png" alt="青海湖02"><div class="m-carousel-caption">青海湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://images.pexels.com/photos/8739405/pexels-photo-8739405.jpeg?auto=compress&cs=tinysrgb&w=800" alt="茶卡盐湖"><div class="m-carousel-caption">茶卡盐湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://copyright.bdstatic.com/vcg/creative/127b9c00565cddbb89a5688f53ba736f.jpg" alt="天空之镜"><div class="m-carousel-caption">天空之镜</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d2',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d2',1)">›</button>
+                <div class="m-carousel-dots" id="d2-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#27ae60;"><div class="m-spot-name">🏔️ 青海湖·东格尔观景台 <span class="spot-tag tag-scenery">新增</span></div><div class="m-spot-meta"><span>⛰️~3600m</span><span>1-2小时</span><span>免费</span></div><div class="m-spot-suggest">青海湖最佳观景点，可看日出</div></div>
+            <div class="m-spot-card" style="border-left-color:#27ae60;"><div class="m-spot-name">🪞 茶卡盐湖 <span class="spot-tag tag-scenery">核心</span></div><div class="m-spot-meta"><span>⛰️3059m</span><span>2-3小时</span><span>60元+小火车50元</span></div><div class="m-spot-suggest">"天空之镜"，穿亮色衣服航拍</div></div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 星程德令哈市政府中心广场酒店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">德令哈市柴达木西路21-5号</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">lenlen</span><span class="m-hotel-val hotel-price">大床房 476.85元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">小白</span><span class="m-hotel-val hotel-price">豪华家庭房 565.91元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">朱朱</span><span class="m-hotel-val hotel-price">豪华家庭房 565.91元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">费用小计</span><span class="m-hotel-val hotel-price">1608.67元</span></div>
+            </div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">西宁</span><span class="m-route-km">180km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">东格尔观景台</span><span class="m-route-km">80km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">茶卡盐湖</span><span class="m-route-km">200km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">德令哈(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=101.786433,36.527061,西宁&to=100.495805,36.581935,东格尔&mode=car" target="_blank" class="m-map-btn">🚗 西宁→东格尔</a>
+                    <a href="https://uri.amap.com/navigation?from=100.495805,36.581935,东格尔&to=99.070321,36.712523,茶卡盐湖&mode=car" target="_blank" class="m-map-btn">🚗 东格尔→茶卡</a>
+                    <a href="https://uri.amap.com/navigation?from=99.070321,36.712523,茶卡盐湖&to=97.372435,37.374844,德令哈&mode=car" target="_blank" class="m-map-btn">🚗 茶卡→德令哈</a>
+                </div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏔️ 青海湖 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>青海湖不是湖，是我滴落在高原的泪💧</em> — 中国最大咸水湖，海拔3200米的高原蓝宝石</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 东格尔观景台（免费）<br>🟢 黑马河日出观景台<br>🟢 环湖西路中段（公路大片）<br>🟢 断崖观景点（上帝视角）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 7月旺季环湖360公里全线围栏，只有观景台和景区可下到湖边<br>② 东格尔可能闭园改造，出发前确认开放状态<br>③ 黑马河日出约6:00，需5:30前抵达占位<br>④ 海拔3200m，动作放缓防高反</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🪞 茶卡盐湖 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>天空之镜不是镜，是大地仰望天空的眼睛👁️</em> — 中国版乌尤尼，海拔3100米的盐湖倒映整片天</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 千映慕雪平台（最佳拍摄位）<br>🟢 浪漫天镜（网红道具区）<br>🟢 我爱茶卡观光平台<br>🟢 湖面倒影（天空之镜）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 必须晴天去！阴天啥也看不到<br>② 最佳时段上午10点前/下午4点后<br>③ 下湖必须穿景区环保鞋套（8元）<br>④ 浙江身份证免门票（浙江援建青海）</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 3 ==================== -->
+    <div class="m-section" id="day3">
+        <div class="m-card">
+            <div class="m-day-title">Day 3（7月20日）🏜️ | 德令哈 → 察尔汗盐湖 → 南八仙魔鬼城 → 大柴旦</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约450公里·约6小时</span>
+                <span class="m-badge badge-time">7:00出发</span>
+                <span class="m-badge badge-altitude">南八仙3260m</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d3">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://ft.wzznft.com/i/2026/04/19/s9712o.png" alt="察尔汗盐湖1"><div class="m-carousel-caption">察尔汗盐湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://ft.wzznft.com/i/2026/04/19/s979ox.png" alt="察尔汗盐湖2"><div class="m-carousel-caption">察尔汗盐湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://ft.wzznft.com/i/2026/04/19/s96h0f.png" alt="南八仙魔鬼城1"><div class="m-carousel-caption">南八仙魔鬼城</div></div>
+                    <div class="m-carousel-slide"><img src="https://ft.wzznft.com/i/2026/04/19/s96of6.png" alt="南八仙魔鬼城2"><div class="m-carousel-caption">南八仙魔鬼城</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d3',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d3',1)">›</button>
+                <div class="m-carousel-dots" id="d3-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">💎 察尔汗盐湖 <span class="spot-tag tag-scenery">新增·核心</span></div><div class="m-spot-meta"><span>⛰️2670m</span><span>2-3小时</span><span>100元+观光车</span></div><div class="m-spot-suggest">中国最大盐湖，绿色湖水绝美</div></div>
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">🏜️ 南八仙魔鬼城 <span class="spot-tag tag-scenery">新增</span></div><div class="m-spot-meta"><span>⛰️3260m</span><span>1-2小时</span><span>免费</span></div><div class="m-spot-suggest">中国最大魔鬼城，震撼雅丹地貌</div></div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">德令哈</span><span class="m-route-km">150km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">察尔汗盐湖</span><span class="m-route-km">100km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">南八仙</span><span class="m-route-km">200km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">大柴旦(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=97.372435,37.374844,德令哈&to=95.750000,36.850000,察尔汗盐湖&mode=car" target="_blank" class="m-map-btn">🚗 德令哈→察尔汗</a>
+                    <a href="https://uri.amap.com/navigation?from=95.750000,36.850000,察尔汗&to=93.300000,37.500000,南八仙&mode=car" target="_blank" class="m-map-btn">🚗 察尔汗→南八仙</a>
+                    <a href="https://uri.amap.com/navigation?from=93.300000,37.500000,南八仙&to=95.359245,37.855125,大柴旦&mode=car" target="_blank" class="m-map-btn">🚗 南八仙→大柴旦</a>
+                </div>
+            </div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 汉庭酒店·大柴旦店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">大柴旦绍兴北街1号</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">景观大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">598元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">总价</span><span class="m-hotel-val hotel-price">1794元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月20日 23:00前</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">💎 察尔汗盐湖 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>茶卡是天空之镜，察尔汗是上帝打翻的调色盘🎨</em> — 中国最大盐湖，面积是茶卡的56倍，翡翠绿+蒂芙尼蓝+琥珀黄</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 万丈盐桥（盐造天路，航拍几何线条）<br>🟢 千岛盐花（日出日落折射金光）<br>🟢 翡翠盐湖（薄荷绿+蒂芙尼蓝多层次）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票40元+观光车60元（必购，禁止自驾进入）<br>② 最佳时段上午9-11点/下午4-7点<br>③ 湖水含高浓度卤水，严禁接触皮肤<br>④ 航拍自由区，万丈盐桥航拍是灵魂</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏜️ 南八仙魔鬼城 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>这不是地球，是7500万年前的异星遗迹👽</em> — 中国最大雅丹地貌群，7500万年风蚀雕琢，免费、无人、无信号</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 G315里程碑757-758（边缘最佳人像机位）<br>🟢 "雅丹舰队"腹地（航拍灵魂机位）<br>🟢 东部边缘蘑菇状雅丹（人更少）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 免费景点，深入腹地需四驱越野<br>② 手机经常无信号，提前下载离线地图<br>③ 海拔3260m，风沙大，面巾+墨镜必备<br>④ 早晚温差巨大，日落可能需薄羽绒服</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 4 ==================== -->
+    <div class="m-section" id="day4">
+        <div class="m-card">
+            <div class="m-day-title">Day 4（7月21日）💎 | 大柴旦 → 翡翠湖 → U型公路 → 水上雅丹 → 黑独山 → 大柴旦</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约450公里·约5.5小时</span>
+                <span class="m-badge badge-time">7:30出发</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d4">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://img1.baidu.com/it/u=4140561619,3358425927&fm=253&app=138&f=JPEG?w=1067&h=800" alt="翡翠湖"><div class="m-carousel-caption">大柴旦翡翠湖</div></div>
+                    <div class="m-carousel-slide"><img src="https://ft.wzznft.com/i/2026/04/19/sdsgej.png" alt="水上雅丹"><div class="m-carousel-caption">乌素特水上雅丹</div></div>
+                    <div class="m-carousel-slide"><img src="https://copyright.bdstatic.com/vcg/creative/e45279cabe9bd1931d5afb5d5e0ac07b.jpg@wm_1,k_cGljX2JqaHdhdGVyLmpwZw==" alt="U型公路"><div class="m-carousel-caption">U型网红公路</div></div>
+                    <div class="m-carousel-slide"><img src="https://img2.baidu.com/it/u=128160525,1013839392&fm=253&app=138&f=JPEG?w=1067&h=800" alt="黑独山"><div class="m-carousel-caption">黑独山</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d4',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d4',1)">›</button>
+                <div class="m-carousel-dots" id="d4-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#27ae60;"><div class="m-spot-name">💚 大柴旦翡翠湖 <span class="spot-tag tag-scenery">核心</span></div><div class="m-spot-meta"><span>⛰️3148m</span><span>2-3小时</span><span>50元</span></div><div class="m-spot-suggest">湖水翠绿，航拍绝美</div></div>
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">🛣️ U型网红公路</div><div class="m-spot-meta"><span>⛰️~3000m</span><span>30分钟</span><span>免费</span></div><div class="m-spot-suggest">G315国道网红打卡点</div></div>
+            <div class="m-spot-card" style="border-left-color:#3498db;"><div class="m-spot-name">🌊 乌素特水上雅丹 <span class="spot-tag tag-scenery">核心</span></div><div class="m-spot-meta"><span>⛰️~2700m</span><span>2-3小时</span><span>120元</span></div><div class="m-spot-suggest">世界唯一水上雅丹，日落超震撼</div></div>
+            <div class="m-spot-card" style="border-left-color:#888;"><div class="m-spot-name">🌑 黑独山 <span class="spot-tag tag-scenery">新增</span></div><div class="m-spot-meta"><span>⛰️~2800m</span><span>1-2小时</span><span>免费</span></div><div class="m-spot-suggest">地球上最像月球的地方</div></div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">大柴旦</span><span class="m-route-km">20km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">翡翠湖</span><span class="m-route-km">100km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">U型公路</span><span class="m-route-km">80km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">水上雅丹</span><span class="m-route-km">30km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">黑独山</span><span class="m-route-km">60km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">大柴旦(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=95.359245,37.855125,大柴旦&to=95.265364,37.866434,翡翠湖&mode=car" target="_blank" class="m-map-btn">🚗 大柴旦→翡翠湖</a>
+                    <a href="https://uri.amap.com/navigation?from=95.265364,37.866434,翡翠湖&to=93.774248,37.624059,水上雅丹&mode=car" target="_blank" class="m-map-btn">🚗 翡翠湖→水上雅丹</a>
+                    <a href="https://uri.amap.com/navigation?from=93.774248,37.624059,水上雅丹&to=93.500000,37.700000,黑独山&mode=car" target="_blank" class="m-map-btn">🚗 水上雅丹→黑独山</a>
+                    <a href="https://uri.amap.com/navigation?from=93.500000,37.700000,黑独山&to=95.359245,37.855125,大柴旦&mode=car" target="_blank" class="m-map-btn">🚗 黑独山→大柴旦</a>
+                </div>
+            </div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 汉庭酒店·大柴旦店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">大柴旦绍兴北街1号</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">景观大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">598元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">总价</span><span class="m-hotel-val hotel-price">1794元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月20日 23:00前</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">💚 大柴旦翡翠湖 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>云破日出，你就是那道光束✨</em> — 《送你一朵小红花》取景地，上帝打翻的调色盘</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 2号站点·蒂芙尼蓝湖<br>🟢 3号站点·爱心湖（航拍）<br>🟢 4号站点·《小红花》取景地</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票50元+观光车60元<br>② 最佳拍照时间上午10点前/下午4点后<br>③ 穿白色/红色长裙最出片<br>④ 航拍自由区，爱心湖航拍是灵魂</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌊 水上雅丹 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>千年的风蚀了山，万年的水溺了城，雅丹长在了水里🏯</em> — 世界唯一水上雅丹地貌，戈壁中的"百鸟千岛湖"</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 望海台（核心景观区，必下车）<br>🟢 雅丹之眼（需步行一段，高处俯瞰）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票60元+观光车60元（强烈建议买）<br>② 观光车直达望海台，核心时间留给望海台<br>③ 航拍自由区，俯瞰水上雅丹群落才是最佳视角</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌑 黑独山 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>这不是月球，是中国最像外星的地方👽</em> — 地球上最像月球的秘境，黑褐色山岩+白色盐滩交织</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 山前黑白盐滩（极简对比，随手拍大片）<br>🟢 戈壁深处（层次感更丰富，人更少）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 免费景点，无商业设施，带足水和食物<br>② 手机信号弱，不要深入无人地带<br>③ 航拍自由区，俯瞰黑白山脉如月球表面</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 5 ==================== -->
+    <div class="m-section" id="day5">
+        <div class="m-card">
+            <div class="m-day-title">Day 5（7月22日）🏛️🌅 | 大柴旦 → 石油小镇 → 鸣沙山·月牙泉（日落🌅） → 敦煌</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约480公里·约6小时</span>
+                <span class="m-badge badge-time">7:00出发</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d5">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://img0.baidu.com/it/u=3808477112,2432069340&fm=253&fmt=auto&app=138&f=JPEG?w=1067&h=800" alt="石油小镇"><div class="m-carousel-caption">石油小镇</div></div>
+                    <div class="m-carousel-slide"><img src="https://s3.bmp.ovh/2026/04/19/23SZX2pz.png" alt="鸣沙山"><div class="m-carousel-caption">鸣沙山</div></div>
+                    <div class="m-carousel-slide"><img src="https://s3.bmp.ovh/2026/04/19/RiURxbxt.png" alt="月牙泉"><div class="m-carousel-caption">月牙泉</div></div>
+                    <div class="m-carousel-slide"><img src="https://img1.baidu.com/it/u=3973095220,2450250844&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=333" alt="月牙泉(傍晚)"><div class="m-carousel-caption">月牙泉(傍晚)</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d5',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d5',1)">›</button>
+                <div class="m-carousel-dots" id="d5-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#3498db;"><div class="m-spot-name">🏚️ 石油小镇(冷湖) <span class="spot-tag tag-culture">人文</span></div><div class="m-spot-meta"><span>⛰️~2800m</span><span>1小时</span><span>免费</span></div><div class="m-spot-suggest">废弃石油基地，电影取景地</div></div>
+            <div class="m-spot-card" style="border-left-color:#e67e22;"><div class="m-spot-name">🏜️ 鸣沙山·月牙泉 <span class="spot-tag tag-scenery">日落🌅</span></div><div class="m-spot-meta"><span>⛰️~1700m</span><span>18:00-21:00</span><span>110元</span></div><div class="m-spot-suggest">骑骆驼上山看日落，俯瞰月牙泉夜景</div></div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 汉庭敦煌沙洲夜市酒店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">沙州镇文昌南路299号</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">510元/间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">费用</span><span class="m-hotel-val hotel-price">1530元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月21日 23:00前</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+            </div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">大柴旦</span><span class="m-route-km">200km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">石油小镇</span><span class="m-route-km">250km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">鸣沙山·月牙泉</span><span class="m-route-km">30km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">敦煌(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=95.359245,37.855125,大柴旦&to=93.389501,38.822525,石油小镇&mode=car" target="_blank" class="m-map-btn">🚗 大柴旦→石油小镇</a>
+                    <a href="https://uri.amap.com/navigation?from=93.389501,38.822525,石油小镇&to=94.662000,40.142000,鸣沙山&mode=car" target="_blank" class="m-map-btn">🚗 石油小镇→鸣沙山</a>
+                    <a href="https://uri.amap.com/navigation?from=94.662000,40.142000,鸣沙山&to=94.662000,40.142000,敦煌市区&mode=car" target="_blank" class="m-map-btn">🚗 鸣沙山→敦煌市区</a>
+                </div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏚️ 石油小镇 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>一座永远定格在80年代的废弃之城⏸️</em> — 《九层妖塔》取景地，荒野废墟+末日工业风的出片圣地</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 入口九层妖塔路牌（经典起点）<br>🟢 倾斜公交车（最网红机位）<br>🟢 巨型怪兽手掌（仰拍震撼）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票约30元+观光车10元<br>② 穿工装风/牛仔/红色长裙，与废墟强对比<br>③ 最佳拍摄时间早上10点前或下午4点后</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌅 鸣沙山·月牙泉 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>大漠孤烟直，长河落日圆🌙</em> — 鸣沙山看日落、月牙泉看星河、万人星空演唱会大合唱</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 鸣沙山顶（日落+演唱会最佳位置）<br>🟢 月牙泉边木栈道<br>🟢 骑骆驼上山（130元，约40分钟）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票110元/人，三天内有效可多次进出<br>② 推荐中门进，距核心景区最近<br>③ 最佳入园时间18:30后，避开正午暴晒<br>④ 爬沙山沿栈道省力<br>⑤ 自备防沙鞋套（景区租20元）</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 6 ==================== -->
+    <div class="m-section" id="day6">
+        <div class="m-card">
+            <div class="m-day-title">Day 6（7月23日）🏛️ | 敦煌：莫高窟 + 大地之子 + 榆林窟 + 玄奘取经博物馆 + 沙洲夜市</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约200公里·约3小时</span>
+                <span class="m-badge badge-time">8:00出发</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d6">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKT4U.md.png" alt="莫高窟1"><div class="m-carousel-caption">莫高窟</div></div>
+                    <div class="m-carousel-slide"><img src="https://copyright.bdstatic.com/vcg/edit/27b3ea9c184a38a1f3d4336ec1b9be77.jpg@h_1280" alt="大地之子"><div class="m-carousel-caption">大地之子</div></div>
+                    <div class="m-carousel-slide"><img src="https://pic1.zhimg.com/v2-08f8ad505b1a0f693463edcee93860df_r.jpg?source=2c26e567" alt="榆林窟"><div class="m-carousel-caption">榆林窟</div></div>
+                    <div class="m-carousel-slide"><img src="https://n.sinaimg.cn/sinacn20110/0/w2048h1152/20190829/68ad-icxmqsv0072741.jpg" alt="玄奘取经博物馆"><div class="m-carousel-caption">玄奘取经博物馆</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d6',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d6',1)">›</button>
+                <div class="m-carousel-dots" id="d6-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">🏛️ 莫高窟 <span class="spot-tag tag-culture">世界遗产</span></div><div class="m-spot-meta"><span>⛰️~1300m</span><span>9:00-12:00</span><span>238元(A票)</span></div><div class="m-spot-suggest">需提前1个月预约！上午场约3小时</div></div>
+            <div class="m-spot-card" style="border-left-color:#3498db;"><div class="m-spot-name">👶 大地之子 <span class="spot-tag tag-culture">打卡</span></div><div class="m-spot-meta"><span>⛰️~1400m</span><span>30分钟</span><span>免费</span></div><div class="m-spot-suggest">清华美院作品，戈壁滩婴儿雕塑</div></div>
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">🎨 榆林窟 <span class="spot-tag tag-culture">世界遗产</span></div><div class="m-spot-meta"><span>⛰️~1500m</span><span>14:00-17:00</span><span>40元(普窟)</span></div><div class="m-spot-suggest">莫高窟姊妹窟，特窟值得看</div></div>
+            <div class="m-spot-card" style="border-left-color:#3498db;"><div class="m-spot-name">📜 玄奘取经博物馆 <span class="spot-tag tag-culture">人文</span></div><div class="m-spot-meta"><span>⛰️~1200m</span><span>1小时</span><span>免费</span></div><div class="m-spot-suggest">纪念玄奘西行，了解取经历史</div></div>
+            <div class="m-spot-card" style="border-left-color:#e74c3c;"><div class="m-spot-name">🛒 沙洲夜市 <span class="spot-tag tag-food">美食</span></div><div class="m-spot-meta"><span>20:00</span><span>免费</span></div><div class="m-spot-suggest">驴肉黄面、杏皮茶、李广杏</div></div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 汉庭敦煌沙洲夜市酒店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">沙州镇文昌南路299号</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">510元/间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">费用</span><span class="m-hotel-val hotel-price">1530元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月21日 23:00前</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+            </div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">敦煌市区</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">莫高窟</span><span class="m-route-km">25km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">大地之子</span><span class="m-route-km">80km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">榆林窟</span><span class="m-route-km">50km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">玄奘取经博物馆</span><span class="m-route-km">30km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">敦煌(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=94.662000,40.142000,敦煌市区&to=94.807921,40.038872,莫高窟&mode=car" target="_blank" class="m-map-btn">🚗 敦煌→莫高窟</a>
+                    <a href="https://uri.amap.com/navigation?from=94.807921,40.038872,莫高窟&to=95.500000,40.200000,大地之子&mode=car" target="_blank" class="m-map-btn">🚗 莫高窟→大地之子</a>
+                    <a href="https://uri.amap.com/navigation?from=95.500000,40.200000,大地之子&to=95.800000,40.500000,榆林窟&mode=car" target="_blank" class="m-map-btn">🚗 大地之子→榆林窟</a>
+                </div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏛️ 莫高窟 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>看一眼，是千年的呼吸；听一声，是丝绸之路的回响🎐</em> — 世界文化遗产，东方艺术明珠，735个洞窟492个洞窟</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 第96窟·九层楼（35.5米弥勒佛）<br>🟢 第17窟·藏经洞<br>🟢 第148窟·涅槃卧佛</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 旺季门票238元含数字电影+8洞窟<br>② ⚠️必须提前30天在官方平台预约！<br>③ 洞内严禁拍照<br>④ 特窟150-200元/窟，推荐第45窟、第57窟</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">👶 大地之子 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>戈壁滩上，一个熟睡的婴儿💤</em> — 清华美院董书兵教授设计，15米长4米宽9米高红砂岩巨型雕塑</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 大地之子正面（经典角度）<br>🟢 侧面全身（展示完整尺度）<br>🟢 与无界同框（航拍）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 免费景点<br>② 注意拍照收费陷阱<br>③ 禁止攀爬雕塑</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🎨 榆林窟 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>莫高窟的姊妹，藏在戈壁峡谷中的艺术宝藏🏯</em> — 保存壁画约4200平方米，西夏时期壁画艺术水平极高</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 第25窟（强烈推荐，唐代壁画巅峰）<br>🟢 第3窟（西夏壁画精品）<br>🟢 榆林河峡谷</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票40元，特窟150-200元/窟<br>② 特窟开团时间：旺季10:30/15:30最后一场<br>③ 距敦煌市区约270km，车程约2.5小时</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 7 ==================== -->
+    <div class="m-section" id="day7">
+        <div class="m-card">
+            <div class="m-day-title">Day 7（7月24日）🏰 | 敦煌 → 嘉峪关 → 七彩丹霞 → 张掖</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约430公里·约5.5小时</span>
+                <span class="m-badge badge-time">7:00出发</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d7">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/20/pecyEE6.png" alt="嘉峪关"><div class="m-carousel-caption">嘉峪关</div></div>
+                    <div class="m-carousel-slide"><img src="https://img0.baidu.com/it/u=1625510527,1536350412&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500" alt="嘉峪关01"><div class="m-carousel-caption">嘉峪关</div></div>
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKXuR.md.png" alt="七彩丹霞"><div class="m-carousel-caption">张掖七彩丹霞</div></div>
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKqgJ.md.png" alt="七彩丹霞"><div class="m-carousel-caption">张掖七彩丹霞</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d7',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d7',1)">›</button>
+                <div class="m-carousel-dots" id="d7-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#3498db;"><div class="m-spot-name">🏯 嘉峪关 <span class="spot-tag tag-culture">历史遗迹</span></div><div class="m-spot-meta"><span>⛰️~1700m</span><span>2-3小时</span><span>110元</span></div><div class="m-spot-suggest">"天下第一雄关"</div></div>
+            <div class="m-spot-card" style="border-left-color:#e67e22;"><div class="m-spot-name">🌈 张掖七彩丹霞 <span class="spot-tag tag-scenery">核心</span></div><div class="m-spot-meta"><span>⛰️~1800m</span><span>3-4小时</span><span>75元</span></div><div class="m-spot-suggest">日落时分4号观景台最美</div></div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 张掖花园洋房</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">张掖甘州区御墅珑湾8号楼1单元101</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">总价</span><span class="m-hotel-val hotel-price">807元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">携程</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">刘豆豆</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月21日 18:00前</span></div>
+            </div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">敦煌</span><span class="m-route-km">370km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">嘉峪关</span><span class="m-route-km">30km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">七彩丹霞</span><span class="m-route-km">50km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">张掖(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=94.662000,40.142000,敦煌&to=98.221236,39.805921,嘉峪关&mode=car" target="_blank" class="m-map-btn">🚗 敦煌→嘉峪关</a>
+                    <a href="https://uri.amap.com/navigation?from=98.221236,39.805921,嘉峪关&to=100.063749,38.961404,七彩丹霞&mode=car" target="_blank" class="m-map-btn">🚗 嘉峪关→七彩丹霞</a>
+                    <a href="https://uri.amap.com/navigation?from=100.063749,38.961404,七彩丹霞&to=100.449167,38.929867,张掖市区&mode=car" target="_blank" class="m-map-btn">🚗 七彩丹霞→张掖市区</a>
+                </div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏯 嘉峪关 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>出了嘉峪关，两眼泪不干——进了嘉峪关，才知天地宽🏔️</em> — 明代万里长城西端起点，"天下第一雄关"</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 嘉峪关关城（明洪武年间修建）<br>🟢 光华楼（远眺祁连山雪峰）<br>🟢 悬壁长城<br>🟢 长城第一墩（日落绝佳）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票约110元含联票<br>② 实行实名预约制，旺季需提前购票<br>③ 建议下午前往，傍晚在第一墩看日落</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌈 张掖七彩丹霞 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>赤橙黄绿青蓝紫，谁持彩练当空舞🌈</em> — 中国彩虹山，世界唯一丹霞地貌与彩色丘陵复合区域</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 4号虹霞台（日落终极点位）⭐<br>🟢 1号云海台（全景俯瞰）⭐<br>🟢 2号卧虎峡（造型奇特）</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票（含观光车）成人93元<br>② 7月日落约20:00，建议19:00前入园<br>③ 严禁翻越护栏踩踏山体！<br>④ 穿浅色/红色/蓝色服装与彩色山丘对比</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 8 ==================== -->
+    <div class="m-section" id="day8">
+        <div class="m-card">
+            <div class="m-day-title">Day 8（7月25日）🌿🌻 | 张掖 → 马蹄寺 → 祁连草原 → 门源 → 西宁</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">约470公里·约6.5小时</span>
+                <span class="m-badge badge-time">7:00出发</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d8">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKHCF.png" alt="马蹄寺1"><div class="m-carousel-caption">马蹄寺</div></div>
+                    <div class="m-carousel-slide"><img src="https://bkimg.cdn.bcebos.com/pic/314e251f95cad1c80055cc14723e6709c93d5112" alt="门源油菜花"><div class="m-carousel-caption">门源油菜花海</div></div>
+                    <div class="m-carousel-slide"><img src="https://img1.baidu.com/it/u=467993635,1980038947&fm=253&fmt=auto&app=138&f=JPEG?w=729&h=500" alt="青海风景"><div class="m-carousel-caption">祁连草原</div></div>
+                    <div class="m-carousel-slide"><img src="https://s41.ax1x.com/2026/04/19/pecKjD1.md.png" alt="西宁"><div class="m-carousel-caption">西宁</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d8',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d8',1)">›</button>
+                <div class="m-carousel-dots" id="d8-dots"></div>
+            </div>
+
+            <div class="m-spot-card" style="border-left-color:#9b59b6;"><div class="m-spot-name">🏛️ 马蹄寺 <span class="spot-tag tag-culture">人文</span></div><div class="m-spot-meta"><span>⛰️~2500m</span><span>2-3小时</span><span>71元</span></div><div class="m-spot-suggest">三十三天石窟壮观，裕固族风情</div></div>
+            <div class="m-spot-card" style="border-left-color:#27ae60;"><div class="m-spot-name">🌿 祁连大草原 <span class="spot-tag tag-scenery">核心</span></div><div class="m-spot-meta"><span>⛰️~2700m</span><span>2-3小时</span><span>免费</span></div><div class="m-spot-suggest">东方小瑞士，骑马/牧民家访</div></div>
+            <div class="m-spot-card" style="border-left-color:#f39c12;"><div class="m-spot-name">🌻 门源油菜花海 <span class="spot-tag tag-scenery">季节限定</span></div><div class="m-spot-meta"><span>⛰️~2900m</span><span>1-2小时</span><span>红山观景台50元</span></div><div class="m-spot-suggest">7月盛花期，日出/日落最佳</div></div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">张掖</span><span class="m-route-km">60km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">马蹄寺</span><span class="m-route-km">120km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">祁连草原</span><span class="m-route-km">150km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">门源油菜花</span><span class="m-route-km">140km</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">西宁(宿)</span></div>
+                </div>
+                <div class="m-map-links">
+                    <a href="https://uri.amap.com/navigation?from=100.449167,38.929867,张掖&to=100.063749,38.961404,马蹄寺&mode=car" target="_blank" class="m-map-btn">🚗 张掖→马蹄寺</a>
+                    <a href="https://uri.amap.com/navigation?from=100.063749,38.961404,马蹄寺&to=100.943219,37.963804,祁连草原&mode=car" target="_blank" class="m-map-btn">🚗 马蹄寺→祁连草原</a>
+                    <a href="https://uri.amap.com/navigation?from=100.943219,37.963804,祁连草原&to=101.437747,37.472699,门源&mode=car" target="_blank" class="m-map-btn">🚗 祁连→门源</a>
+                    <a href="https://uri.amap.com/navigation?from=101.437747,37.472699,门源&to=101.786433,36.527061,西宁&mode=car" target="_blank" class="m-map-btn">🚗 门源→西宁</a>
+                </div>
+            </div>
+
+            <div class="m-hotel-card">
+                <div class="m-hotel-name">🏨 海友西宁火车站酒店</div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">地址</span><span class="m-hotel-val">火车站西侧综合安置区2号地块B1号楼11层</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">房型</span><span class="m-hotel-val">大床房</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">单价</span><span class="m-hotel-val hotel-price">290元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">数量</span><span class="m-hotel-val">3间</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">总价</span><span class="m-hotel-val hotel-price">870元</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">平台</span><span class="m-hotel-val">华住</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">预定人</span><span class="m-hotel-val">朱朱</span></div>
+                <div class="m-hotel-row"><span class="m-hotel-lbl">退订</span><span class="m-hotel-val">7月24日 23:00前</span></div>
+            </div>
+
+            <div class="m-accordion">
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🏛️ 马蹄寺 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>天马一蹄落石上，三十三天里拜如来🕯️</em> — 国家4A级景区，始建于北凉时期，集石窟艺术、祁连山风光、裕固族风情于一体</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 三十三天石窟（必打卡，共19层）⭐<br>🟢 千佛洞、格萨尔王殿<br>🟢 裕固族帐篷体验区</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 门票35元+北寺石窟36元=71元<br>② 开放时间8:00-17:00<br>③ 三十三天石窟台阶窄，只能单行，注意安全<br>④ 距张掖市区约65公里</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌿 祁连大草原 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>天苍苍，野茫茫，风吹草低见牛羊🐴</em> — 中国最美六大草原之一，海拔4000米以上山峰与现代冰川并存</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 卓尔山·"东方小瑞士"⭐<br>🟢 阿柔大寺⭐（红墙金顶）<br>🟢 祁连大草原腹地（骑马）⭐</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 草原腹地免费；卓尔山+景交车约80元<br>② 骑马自费约50-100元/小时<br>③ 穿亮色衣服拍照更出片</p></div>
+                    </div>
+                </div>
+                <div class="m-accordion-item">
+                    <div class="m-accordion-header" onclick="toggleAccordion(this)">🌻 门源百里油菜花海 <span class="arrow">▼</span></div>
+                    <div class="m-accordion-body">
+                        <p class="m-accordion-intro">💡 <em>7月的高原，是油菜花的主场🌾</em> — 中国海拔最高、连片面积最大的油菜花海，超60万亩</p>
+                        <div class="m-hl-item"><span class="m-hl-icon">📸</span><strong>打卡点</strong><p>🟢 红山（1314）观景台⭐（日出岗什卡雪峰同框）<br>🟢 圆山观花台⭐<br>🟢 G227国道百里花带</p></div>
+                        <div class="m-hl-item"><span class="m-hl-icon">⚠️</span><strong>Tips</strong><p>① 红山观景台50元/人<br>② 盛花期7月15-25日为最佳窗口<br>③ 严禁踩踏油菜花田！<br>④ 旺季住宿需提前1-2个月预订</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Day 9 ==================== -->
+    <div class="m-section" id="day9">
+        <div class="m-card">
+            <div class="m-day-title">Day 9（7月26日）🚄 | 西宁 → 北京（Z152卧铺返程）</div>
+            <div class="m-day-badges">
+                <span class="m-badge badge-distance">Z152软卧约24小时</span>
+                <span class="m-badge badge-time">7月26日上午抵达</span>
+            </div>
+
+            <div class="m-carousel" data-carousel="d9">
+                <div class="m-carousel-track">
+                    <div class="m-carousel-slide"><img src="https://qcloud.dpfile.com/pc/o35cMp4fZVwkFd9fRvl_cBfHPJDnOLbMJKqpR7127wapI5D4vJpVWQRcU3vytK-o.jpg" alt="西宁"><div class="m-carousel-caption">西宁</div></div>
+                    <div class="m-carousel-slide"><img src="https://img2.baidu.com/it/u=342894395,903199961&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500" alt="高铁"><div class="m-carousel-caption">Z152卧铺返程</div></div>
+                    <div class="m-carousel-slide"><img src="https://img0.baidu.com/it/u=876443814,3990321419&fm=253&app=138&f=JPEG?w=1067&h=800" alt="风景"><div class="m-carousel-caption">沿途风景</div></div>
+                    <div class="m-carousel-slide"><img src="https://qcloud.dpfile.com/pc/HLlpvNhWKuPqquPNgUTc9vXMs-GCZrW01Opzi0PKWb92s8pOaBaK7noedymStd2h.jpg" alt="北京"><div class="m-carousel-caption">北京西站</div></div>
+                </div>
+                <button class="m-carousel-arrow prev" onclick="slideCarousel('d9',-1)">‹</button>
+                <button class="m-carousel-arrow next" onclick="slideCarousel('d9',1)">›</button>
+                <div class="m-carousel-dots" id="d9-dots"></div>
+            </div>
+
+            <div class="m-spot-card"><div class="m-spot-name">🏨 西宁市区</div><div class="m-spot-meta"><span>早上</span><span>睡到自然醒，整理行李</span></div></div>
+            <div class="m-spot-card"><div class="m-spot-name">🚄 西宁站</div><div class="m-spot-meta"><span>14:15出发</span><span>还车，乘Z152软卧上铺返京（629元/人）</span></div></div>
+            <div class="m-spot-card"><div class="m-spot-name">🏠 北京西站</div><div class="m-spot-meta"><span>7月26日 14:30</span><span>到家，结束完美旅程</span></div></div>
+
+            <div class="m-route">
+                <div class="m-route-title">🛣️ 路线规划</div>
+                <div class="m-route-nodes">
+                    <div class="m-route-item"><span class="m-route-dot start"></span><span class="m-route-name">西宁酒店</span></div>
+                    <div class="m-route-arrow">→</div>
+                    <div class="m-route-item"><span class="m-route-dot stop"></span><span class="m-route-name">西宁站</span></div>
+                    <div class="m-route-arrow">🚄</div>
+                    <div class="m-route-item"><span class="m-route-dot end"></span><span class="m-route-name">北京西站</span><span class="m-route-km">Z152卧铺</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-divider">— 旅程结束 —</div>
+    </div>
+
+</div><!-- end .m-content -->
+
+<script>
+    // ============ Tab Switching ============
+    const tabs = document.querySelectorAll('.m-tab');
+    const sections = document.querySelectorAll('.m-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(target).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // re-init carousel dots for the active section
+            initCarouselDots();
+        });
+    });
+
+    // ============ Carousel ============
+    const carouselState = {};
+
+    function initCarousel(carouselId) {
+        const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+        if (!carousel) return;
+        const track = carousel.querySelector('.m-carousel-track');
+        const slides = carousel.querySelectorAll('.m-carousel-slide');
+        const dotsContainer = document.getElementById(carouselId + '-dots');
+        if (!carouselState[carouselId]) {
+            carouselState[carouselId] = { index: 0 };
+        }
+        const state = carouselState[carouselId];
+
+        // Build dots
+        if (dotsContainer && slides.length > 1) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'm-carousel-dot' + (i === state.index ? ' active' : '');
+                dot.onclick = () => goToSlide(carouselId, i);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // Touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        carousel.ontouchstart = e => { touchStartX = e.changedTouches[0].screenX; };
+        carousel.ontouchend = e => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                slideCarousel(carouselId, diff > 0 ? 1 : -1);
+            }
+        };
+    }
+
+    function goToSlide(carouselId, index) {
+        const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+        if (!carousel) return;
+        const slides = carousel.querySelectorAll('.m-carousel-slide');
+        const total = slides.length;
+        const state = carouselState[carouselId] || { index: 0 };
+        state.index = ((index % total) + total) % total;
+        carouselState[carouselId] = state;
+        const track = carousel.querySelector('.m-carousel-track');
+        track.style.transform = `translateX(-${state.index * 100}%)`;
+        initCarousel(carouselId);
+    }
+
+    function slideCarousel(carouselId, direction) {
+        const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+        if (!carousel) return;
+        const slides = carousel.querySelectorAll('.m-carousel-slide');
+        const total = slides.length;
+        const state = carouselState[carouselId] || { index: 0 };
+        state.index = (state.index + direction + total) % total;
+        carouselState[carouselId] = state;
+        const track = carousel.querySelector('.m-carousel-track');
+        track.style.transform = `translateX(-${state.index * 100}%)`;
+        initCarousel(carouselId);
+    }
+
+    function initCarouselDots() {
+        document.querySelectorAll('.m-carousel').forEach(c => {
+            const id = c.dataset.carousel;
+            if (!carouselState[id]) carouselState[id] = { index: 0 };
+            const slides = c.querySelectorAll('.m-carousel-slide');
+            const dotsContainer = document.getElementById(id + '-dots');
+            if (dotsContainer && slides.length > 1) {
+                dotsContainer.innerHTML = '';
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'm-carousel-dot' + (i === carouselState[id].index ? ' active' : '');
+                    dot.onclick = () => goToSlide(id, i);
+                    dotsContainer.appendChild(dot);
+                });
+            }
+        });
+    }
+
+    // Init all carousels on load
+    ['d1','d2','d3','d4','d5','d6','d7','d8','d9'].forEach(id => initCarousel(id));
+
+    // ============ Accordion ============
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        const wasOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.m-accordion-item').forEach(i => i.classList.remove('open'));
+        // Toggle
+        if (!wasOpen) item.classList.add('open');
+    }
+</script>
+
+</body>
+</html>
